@@ -16,7 +16,16 @@ park_info = pd.read_csv("Level11/national_parks_sample.csv")
 
 #print(parkloc[["Park", "StateOrStates", "AnnualVisitorsThousands", "TrailMiles"]])
 
-result = park_info.query('Park == "Everglades"')[["Park", "Region", "TrailMiles"]]
+#result = park_info.query('Park == "Everglades"')[["Park", "Region", "TrailMiles"]]
+park_info.at[9, "ReviewStatus"] = "Needs Review"
 
-print(result)
+park_info["ReviewStatus"] = "Not Reviewed"
+
+park_info.at[10, "PlanningPriority"] = "Standard"
+
+park_info["PlanningPriority"] = "Low"
+
+park_info.loc[park_info["TrailMiles"] >= 500, "PlanningPriority"] = "High"
+
+print(park_info[["Park", "ReviewStatus", "PlanningPriority"]])
 
